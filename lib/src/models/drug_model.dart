@@ -11,7 +11,7 @@ String drugToJson(Drug data) => json.encode(data.toMap());
 class Drug {
   int id;
   String name;
-  int maxDose;
+  String maxDose;
   String whenToTake;
   String interactions;
   String instructions;

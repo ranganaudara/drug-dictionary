@@ -30,8 +30,39 @@ class CustomDrawer extends StatelessWidget {
                     Container(
                       color: Theme.of(context).primaryColor,
                       height: (SizeConfig.screenHeight - 10) / 3,
+                      width: SizeConfig.screenWidth - 30,
                       child: Column(
-                        children: <Widget>[],
+                        children: <Widget>[
+                          SizedBox(
+                            height: 25.0,
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 15,
+                            width: SizeConfig.blockSizeVertical * 15,
+                            child: Image(
+                                image:
+                                    AssetImage('assets/icons/dictionary.png')),
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Text(
+                            "Drug Dictinary - Pharmacy Helper",
+                            style: Theme.of(context).textTheme.subtitle,
+                          ),
+                          Text(
+                            "Version 1.0.0",
+                            style: Theme.of(context).textTheme.body1,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        style: Theme.of(context).textTheme.body1,
+                        textAlign: TextAlign.justify,
                       ),
                     ),
                     RaisedButton(
@@ -64,7 +95,10 @@ class CustomDrawer extends StatelessWidget {
                 Image(image: AssetImage('assets/icons/dictionary.png')),
           ),
           ListTile(
-            title: Text('Favourites'),
+            title: Text(
+              'Favourites',
+              style: Theme.of(context).textTheme.display1,
+            ),
             leading: Icon(Icons.favorite),
             onTap: () {
               Navigator.push(
@@ -76,7 +110,10 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('History'),
+            title: Text(
+              'History',
+              style: Theme.of(context).textTheme.display1,
+            ),
             leading: Icon(Icons.history),
             onTap: () {
               Navigator.push(
@@ -88,7 +125,10 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('About'),
+            title: Text(
+              'About',
+              style: Theme.of(context).textTheme.display1,
+            ),
             leading: Icon(Icons.info),
             onTap: _showAbout,
           ),
@@ -96,7 +136,10 @@ class CustomDrawer extends StatelessWidget {
             height: 10.0,
           ),
           ListTile(
-            title: Text('Exit'),
+            title: Text(
+              'Exit',
+              style: Theme.of(context).textTheme.display1,
+            ),
             leading: Icon(Icons.exit_to_app),
             onTap: () => exit(0),
           ),

@@ -2,6 +2,7 @@ import 'package:drug_dictionary/config/size_config.dart';
 import 'package:drug_dictionary/src/models/drug_model.dart';
 import 'package:drug_dictionary/utils/database_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class DrugDetails extends StatefulWidget {
   final drugName;
@@ -61,7 +62,7 @@ class _DrugDetailsState extends State<DrugDetails> {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      d.maxDose.toString() + " mg",
+                      d.maxDose,
                       style: Theme.of(context).textTheme.body2,
                     ),
                     SizedBox(height: 10.0),
@@ -89,21 +90,28 @@ class _DrugDetailsState extends State<DrugDetails> {
               ),
               Card(
                 elevation: 3.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: 10.0),
-                    Text(
-                      "Interactions",
-                      style: Theme.of(context).textTheme.subtitle,
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      d.interactions.toString(),
-                      style: Theme.of(context).textTheme.body2,
-                    ),
-                    SizedBox(height: 10.0),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: 10.0),
+                      Text(
+                        "Instructions",
+                        style: Theme.of(context).textTheme.subtitle,
+                        textAlign: TextAlign.justify,
+                      ),
+                      SizedBox(height: 8.0),
+                      Markdown(
+                        data: d.instructions,
+                        shrinkWrap: true,
+                        styleSheet:
+                            MarkdownStyleSheet.fromTheme(Theme.of(context))
+                                .copyWith(textScaleFactor: 1.15),
+                      ),
+                      SizedBox(height: 10.0),
+                    ],
+                  ),
                 ),
               ),
               Card(
@@ -113,14 +121,18 @@ class _DrugDetailsState extends State<DrugDetails> {
                   children: <Widget>[
                     SizedBox(height: 10.0),
                     Text(
-                      "Instructions",
+                      "Interactions",
                       style: Theme.of(context).textTheme.subtitle,
                     ),
                     SizedBox(height: 8.0),
-                    Text(
-                      d.instructions.toString(),
-                      style: Theme.of(context).textTheme.body2,
-                    ),
+                    d.interactions != "" ?
+                    Markdown(
+                      data: d.interactions,
+                      shrinkWrap: true,
+                      styleSheet:
+                      MarkdownStyleSheet.fromTheme(Theme.of(context))
+                          .copyWith(textScaleFactor: 1.15),
+                    ): Text("-No-"),
                     SizedBox(height: 10.0),
                   ],
                 ),
